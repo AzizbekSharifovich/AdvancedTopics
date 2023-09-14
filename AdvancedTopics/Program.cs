@@ -7,16 +7,14 @@ public class Program
 {
     static void Main(string[] args)
     {
-        Thread teaMakingProccess = new Thread(MakeTea);
-        teaMakingProccess.IsBackground = true;
-        teaMakingProccess.Start();
+        ThreadPool.QueueUserWorkItem(MakeTea, 4);
 
         FryEggs();
 
         Console.WriteLine("Bon appetit!");
     }
 
-    public static void MakeTea()
+    public static void MakeTea(object state)
     {
         Console.WriteLine("Bioling water!");
         Thread.Sleep(5000);
